@@ -1,0 +1,18 @@
+/* XPM */
+static char *head_10[]={
+"10 10 5 1",
+"c c #000000",
+". c #008000",
+"a c #00ff00",
+"# c #800080",
+"b c #ff00ff",
+"...####...",
+"a.#bbbb#.a",
+".#bbbbbb#.",
+"#bbcbbcbb#",
+"#bbbbbbbb#",
+"#bbbccbbb#",
+"#bcbbbbcb#",
+".#bccccb#.",
+"a.#bbbb#.a",
+"...####..."};

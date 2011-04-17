@@ -1,0 +1,15 @@
+
+#include <Motif.tmpl>
+#include <Motif.rules>
+
+CC=gcc
+CCOPTIONS=-O -Wall
+CDEBUGFLAGS=-g
+
+LOCAL_LIBRARIES = XmClientLibs $(XMULIB) $(XPMLIB)
+
+MSimpleProgramTarget(nwurmy85)
+
+clean::
+	$(RM) Makefile
+
