@@ -1,0 +1,24 @@
+The installation of cconv is fairly straight forward.
+
+Linux
+------------------------------------------------------------------------------
+ Preparations:
+
+   What you'll need to fully build cconv is ANSI C compiler.
+ Building cconv:
+
+   Under Linux you must follow these steps to build the binary:
+
+	1) make
+           This will build the binary.  If any problems occur here, send an
+	   email detailing the errors to janf@email.cz.
+
+        3) make install
+           This will install the binaries and plugins into /usr/bin
+
+	4) cconv
+	   Run it and enjoy =)
+
+   If you want tkcconv, install cconv and then
+        1) tkcconv
+	   Run it and enjoy more =)
