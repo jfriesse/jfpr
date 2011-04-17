@@ -14,9 +14,49 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <getopt.h>
+#include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+/*
+ * Prototypes
+ */
+static void	usage(void);
+
+/*
+ * Sparse tee - duplicate standard input to standard output and file(s)
+ */
 int
-main(int argc, const char *argv[]) {
+main(int argc, char *const argv[]) {
+	int aflag;
+	int ch;
+
+	aflag = 0;
+
+	while ((ch = getopt(argc, argv, "ai")) != -1)
+		switch (ch) {
+		case 'a':
+			aflag = 1;
+			break;
+		case 'i':
+			signal(SIGINT, SIG_IGN);
+			break;
+		default:
+			usage();
+			/* NOTREACHED */
+	}
+
+	argc -= optind;
+	argv += optind;
+
 	return (0);
+}
+
+static void
+usage(void) {
+	extern char *__progname;
+
+	fprintf(stderr, "usage: %s [-ai]\n", __progname);
+	exit(1);
 }
