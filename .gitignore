@@ -1,0 +1,4 @@
+*.o
+sptee
+tags
+*.c~
