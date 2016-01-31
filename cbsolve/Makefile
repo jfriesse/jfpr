@@ -7,4 +7,4 @@ clean:
 	rm -f cbsolve
 
 test: cbsolve
-	./cbsolve < cb1-ex-56.txt
+	./cbsolve < examples/cb1-ex-56.txt
