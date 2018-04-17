@@ -1,6 +1,6 @@
 Display And Erase Disk Blocks
 ----------
-Tool to display (and if requested) erase blocks in file (on block device)
+Tool to display (and if requested erase) blocks in file (on block device)
 which are not full of zeroes.
 
 License
