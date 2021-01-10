@@ -1,0 +1,9 @@
+ingredients:
+  dist: jessie
+  sources:
+    - deb http://ftp.de.debian.org/debian/ jessie main
+  packages:
+    - keepassx
+
+script:
+  - cp usr/share/icons/hicolor/32x32/apps/keepassx.png keepassx.png
