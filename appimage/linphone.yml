@@ -1,0 +1,13 @@
+ingredients:
+  dist: buster
+  sources:
+    - deb http://ftp.de.debian.org/debian/ buster main
+  packages:
+    - linphone
+
+script:
+  - sed -i -e 's#/usr#././#g' usr/bin/linphone
+  - sed -i -e 's#/usr#././#g' usr/bin/linphonec
+  - rm usr/share/linphone/COPYING
+  - wget https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt -O usr/share/linphone/COPYING
+  - cp usr/share/icons/hicolor/48x48/apps/linphone.png linphone.png
