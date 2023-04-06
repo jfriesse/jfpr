@@ -4,25 +4,42 @@
 # Usage rsync-log-to-xxh128sum.py < rsync.log
 
 import sys
+import re
 
 def process_log():
     files = {}
 
     for line in sys.stdin:
-#        print(line.rstrip())
+        line = line.rstrip("\n")
+#        print(line)
+
         items = line.split()
 
         oper = items[3]
         if oper == "*deleting" or (len(oper) == 11 and (oper[0] == ">" or oper[0] == "h")):
+            f_hash_and_name = re.sub("^[^ ]* [^ ]* [^ ]* [^ ]* ", "", line)
+#            print(f_hash_and_name)
+
             if oper == "*deleting":
-                if items[4][-1] == "/": #Ignore directory delete
+                fname = f_hash_and_name.lstrip()
+#                print(fname)
+
+                if fname[-1] == "/": #Ignore directory delete
                     continue
 
-                del files[items[4]]
+                del files[fname]
             elif oper[0] == ">":
-                files[items[5]] = items[4]
+                fhash = items[4]
+                fname = re.sub("^[^ ]* ", "", f_hash_and_name)
+#                print(fhash, fname)
+
+                files[fname] = fhash
             elif oper[0] == "h":
-                files[items[4]] = files[items[6]]
+                fname1 = re.sub(" => .*$", "", f_hash_and_name.lstrip())
+                fname2 = re.sub("^.* => ", "", f_hash_and_name)
+#                print(fname1, fname2)
+
+                files[fname1] = files[fname2]
             else:
                 sys.exit("Unhandled oper")
 
