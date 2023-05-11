@@ -27,6 +27,9 @@ def process_log():
                 if fname[-1] == "/": #Ignore directory delete
                     continue
 
+                if fname not in files: # Ignore non-existing files (softlinks)
+                    continue
+
                 del files[fname]
             elif oper[0] == ">":
                 fhash = items[4]
