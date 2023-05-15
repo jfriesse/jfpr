@@ -24,10 +24,7 @@ def process_log():
                 fname = f_hash_and_name.lstrip()
 #                print(fname)
 
-                if fname[-1] == "/": #Ignore directory delete
-                    continue
-
-                if fname not in files: # Ignore non-existing files (softlinks)
+                if fname not in files: # Ignore non-existing files (softlinks and directories)
                     continue
 
                 del files[fname]
