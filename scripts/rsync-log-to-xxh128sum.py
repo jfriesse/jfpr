@@ -16,7 +16,7 @@ def process_log():
         items = line.split()
 
         oper = items[3]
-        if oper == "*deleting" or (len(oper) == 11 and (oper[0] == ">" or oper[0] == "h")):
+        if oper == "*deleting" or (len(oper) == 11 and (oper[0] == ">" or oper[0] == "h" or oper[0] == "c")):
             f_hash_and_name = re.sub("^[^ ]* [^ ]* [^ ]* [^ ]* ", "", line)
 #            print(f_hash_and_name)
 
@@ -40,6 +40,17 @@ def process_log():
 #                print(fname1, fname2)
 
                 files[fname1] = files[fname2]
+            elif oper[0] == "c":
+                # For create oper check if new file doesn't delete old existing file
+                fname = f_hash_and_name.lstrip()
+
+                if oper[1] == "L":
+                    fname = re.sub(" -> .*$", "", fname)
+
+#                print(fname)
+
+                if fname in files: # File overwrites existing file -> delete it from known files
+                    del files[fname]
             else:
                 sys.exit("Unhandled oper")
 
